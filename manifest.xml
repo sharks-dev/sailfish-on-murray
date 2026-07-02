@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+  <!-- Sony Xperia 10 IV (pdx225) Device Trees -->
+  <project path="device/sony/pdx225" name="LineageOS/android_device_sony_pdx225" revision="lineage-22.2" />
+  <project path="device/sony/sm6375-common" name="LineageOS/android_device_sony_sm6375-common" revision="lineage-22.2" />
+
+  <!-- Kernel Source -->
+  <project path="kernel/sony/sm6375" name="sharks-dev/android_kernel_sony_sm6375" revision="hybris-22.2" />
+
+  <!-- Proprietary Vendor Blobs (TheMuppets) -->
+  <project path="vendor/sony/pdx225" name="TheMuppets/proprietary_vendor_sony_pdx225" revision="lineage-22.2" remote="github" />
+  <project path="vendor/sony/sm6375-common" name="TheMuppets/proprietary_vendor_sony_sm6375-common" revision="lineage-22.2" remote="github" />
+
+  <!-- Sony Hardware Extensions -->
+  <project path="hardware/sony" name="LineageOS/android_hardware_sony" revision="lineage-22.2" />
+
+  <!-- Sailfish bits -->
+  <project path="rpm/" name="sharks-dev/droid-hal-pdx225" revision="master" />
+  <project path="hybris/droid-configs" name="sharks-dev/droid-config-pdx225" revision="master" />
+  <project path="hybris/droid-hal-version-pdx225" name="sharks-dev/droid-hal-version-pdx225" revision="master" />
+</manifest>
