@@ -15,10 +15,10 @@ https://github.com/sharks-dev/droid-hal-pdx225
 # Getting Lineage
 
 It seems that lineageos.org do not host older versions of Lineage for this device(?)
-The latest build of Lineage 22.2 is available from an archived version of their site at this URL:
-https://web.archive.org/web/20251123023550/https://download.lineageos.org/devices/pdx225/builds
-The flashing instructions can be found likewise:
-https://web.archive.org/web/20250418165834/https://wiki.lineageos.org/devices/pdx225/install/#
+
+The latest build of Lineage 22.2 is available from an archived version of their site at this URL: https://web.archive.org/web/20251123023550/https://download.lineageos.org/devices/pdx225/builds
+
+The flashing instructions can be found likewise: https://web.archive.org/web/20250418165834/https://wiki.lineageos.org/devices/pdx225/install/#
 
 ## Notes
 
@@ -53,6 +53,7 @@ Official SODP based murray port: https://github.com/mer-hybris/droid-config-sony
 
 And another LOS22 based port by VerandiTeam: https://github.com/VerdandiTeam/droid-config-miami
 
+An earlier attempt at a LOS based X10IV port(?) by @piggz, @Kabouik and @NotKit: https://github.com/NotKit/droid-config-halium-pdx225
 
 # Acknowledgements
 Thanks to @mal, @elros34 and others who provided (and are still providing!) help and advice on #sailfishos-porters.
