@@ -18,4 +18,7 @@
   <project path="rpm/" name="sharks-dev/droid-hal-pdx225" revision="master" />
   <project path="hybris/droid-configs" name="sharks-dev/droid-config-pdx225" revision="master" />
   <project path="hybris/droid-hal-version-pdx225" name="sharks-dev/droid-hal-version-pdx225" revision="master" />
+
+  <!-- Audio compat -->
+  <project name="mlehtima/android_vendor_halium_hardware" path="vendor/halium/hardware" remote="github" revision="halium-15.0" />
 </manifest>
