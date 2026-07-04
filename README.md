@@ -27,6 +27,8 @@ On my machine (i7-6700, 32GB, Debian 13), from scratch, building SFOS 5.1.0.10, 
 - `make -j$(nproc --all) hybris-hal droidmedia` takes 1hr 57mins, produces 28.33 GB of data in out/
 - `rpm/dhd/helpers/build_packages.sh --mic` requires a final 1.03 GB, including the resultant 537 MB flashable *.zip
 
+Don't forget to run `make audio.hidl_compat.default`
+
 Don't forget to run `rpm/dhd/helpers/build_packages.sh --mw=https://github.com/sailfish-on-nabu/parse-android-dynparts`
 
 Ensure you're flashing to slot_a, as parse-android-dynparts seems incompatible with slot_b(?)
