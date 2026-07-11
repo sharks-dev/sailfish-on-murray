@@ -31,7 +31,7 @@ Don't forget to run `make audio.hidl_compat.default`
 
 Don't forget to run `rpm/dhd/helpers/build_packages.sh --mw=https://github.com/sailfish-on-nabu/parse-android-dynparts`
 
-For AIDL sensors, I think we need the latest 0.15.2 version of sensorfw (used to be the [jb61406 branch](https://piggz.co.uk/sailfishos-porters-archive/index.php?log=2026-04-10.txt#line571)). It doesn't get pulled in automatically at the time of writing so I ran `rpm/dhd/helpers/build_packages.sh --mw=https://github.com/sailfishos/sensorfw --spec=rpm/sensorfw-qt5-hybris.spec`
+For AIDL sensors, I think we need the latest 0.15.2 version of sensorfw (used to be the [jb61406 branch](https://piggz.co.uk/sailfishos-porters-archive/index.php?log=2026-04-10.txt#line571)). It doesn't get pulled in automatically at the time of writing so I ran `rpm/dhd/helpers/build_packages.sh --mw=https://github.com/sailfishos/sensorfw --spec=rpm/sensorfw-qt5-binder.spec`
 
 Ensure you're flashing to slot_a, as parse-android-dynparts seems incompatible with slot_b(?)
 
