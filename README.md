@@ -12,7 +12,7 @@ https://github.com/sharks-dev/droid-hal-version-pdx225
 
 https://github.com/sharks-dev/droid-hal-pdx225
 
-# Getting Lineage
+## Getting Lineage
 
 It seems that lineageos.org do not host older versions of Lineage for this device(?)
 
@@ -30,6 +30,8 @@ On my machine (i7-6700, 32GB, Debian 13), from scratch, building SFOS 5.1.0.10, 
 Don't forget to run `make audio.hidl_compat.default`
 
 Don't forget to run `rpm/dhd/helpers/build_packages.sh --mw=https://github.com/sailfish-on-nabu/parse-android-dynparts`
+
+Don't forget to build pulseaudio-modules-droid version 14.2.106 (fixes audio in calls & routing: https://irclogs.sailfishos.org/logs/%23sailfishos-porters/2026/%23sailfishos-porters.2026-07-12.log.html#t2026-07-12T23:45:56)
 
 For AIDL sensors, I think we need the latest 0.15.2 version of sensorfw (used to be the [jb61406 branch](https://piggz.co.uk/sailfishos-porters-archive/index.php?log=2026-04-10.txt#line571)). It doesn't get pulled in automatically at the time of writing so I ran `rpm/dhd/helpers/build_packages.sh --mw=https://github.com/sailfishos/sensorfw --spec=rpm/sensorfw-qt5-binder.spec`
 
