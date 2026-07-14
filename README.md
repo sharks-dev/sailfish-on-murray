@@ -41,7 +41,7 @@ Run `fastboot erase userdata && fastboot format:ext4 userdata` before flashing (
 
 LineageOS recovery can't unzip a bzip2, you must bunzip2 the rootfs and adjust hybris-updater-script and hybris-updater-unpack inside the produced *.zip before flashing.
 
-LineageOS recovery can't fathom the idea of booting something that isn't Android - when it notices Android isn't booting, it will reboot to recovery and show some error message. Thus, after flashing I reboot to bootloader and run `fastboot flash boot hybris-recovery.img`, then reboot.
+I'm not sure my kickstarts are right yet, thus, after flashing I reboot to bootloader and run `fastboot flash boot hybris-boot.img`, then reboot.
 
 ## HADK guides used for this port:
 
