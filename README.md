@@ -35,9 +35,11 @@ Don't forget to build pulseaudio-modules-droid version 14.2.106 (fixes audio in 
 
 For AIDL sensors, I think we need the latest 0.15.2 version of sensorfw (used to be the [jb61406 branch](https://piggz.co.uk/sailfishos-porters-archive/index.php?log=2026-04-10.txt#line571)). It doesn't get pulled in automatically at the time of writing so I ran `rpm/dhd/helpers/build_packages.sh --mw=https://github.com/sailfishos/sensorfw --spec=rpm/sensorfw-qt5-binder.spec`
 
+Thanks to @rinigus for [droid-bthelper](https://github.com/sailfishos-sony-nagara/droid-bthelper), which we need to enable bluetooth audio in calls. Include it with `rph/dhd/helpers/build_packages.sh --mw=https://github.com/sharks-dev/droid-bthelper`
+
 Ensure you're flashing to slot_a, as parse-android-dynparts seems incompatible with slot_b(?)
 
-Run `fastboot erase userdata && fastboot format:ext4 userdata` before flashing (to ensure userdata is not encrypted by Android. Note you cannot use the fastboot 34.0.5-debian for this, you must download the latest fastboot 37.0.0-14910828 at the time of writing).
+Run `fastboot erase userdata && fastboot form at:ext4 userdata` before flashing (to ensure userdata is not encrypted by Android. Note you cannot use the fastboot 34.0.5-debian for this, you must download the latest fastboot 37.0.0-14910828 at the time of writing).
 
 LineageOS recovery can't unzip a bzip2, you must bunzip2 the rootfs and adjust hybris-updater-script and hybris-updater-unpack inside the produced *.zip before flashing.
 
