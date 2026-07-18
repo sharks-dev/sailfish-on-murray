@@ -49,17 +49,13 @@ I'm not sure my kickstarts are right yet, thus, after flashing I reboot to bootl
 
 Use the .hadk.env and *.ks files from this repo
 
-In the platformSDK, clone `git clone https://github.com/sharks-dev/droid-hal-img-boot-sony-xqcc72 ./some/path/droid-hal-img-boot`
-
-Run `rpm/dhd/build_packages.sh -b ./some/path/droid-hal-img/boot`, this gives you hybris-boot.img in that directory.
-
-Run `sudo mic create loop --arch=$PORT_ARCH --tokenmap=ARCH:$PORT_ARCH,RELEASE:$RELEASE,EXTRA_NAME:$EXTRA_NAME --record-pkgs=name,url --outdir=sfe-$DEVICE-$RELEASE$EXTRA_NAME --copy-kernel "$ANDROID_ROOT"/Jolla-@RELEASE@-$DEVICE-@ARCH@.ks`, this gives you sailfish.img001 and dtbo.img and a bunch of other crap in a *.zip file.
+In the platformSDK run `sudo mic create loop --arch=$PORT_ARCH --tokenmap=ARCH:$PORT_ARCH,RELEASE:$RELEASE,EXTRA_NAME:$EXTRA_NAME --record-pkgs=name,url --outdir=sfe-$DEVICE-$RELEASE$EXTRA_NAME --copy-kernel "$ANDROID_ROOT"/Jolla-@RELEASE@-$DEVICE-@ARCH@.ks`, this gives you hybris-boot.img, sailfish.img001 and dtbo.img and a bunch of other crap in a *.zip file.
 
 Ensure you're running Lineage in slot a
 
-Run `fastboot flash dtbo dtbo.img && fastboot flash boot hybris-boot.img && fastboot flash userdata sailfish.img001`.
+Run `fastboot flash dtbo dtbo.img && fastboot flash boot hybris-boot.img && fastboot flash userdata sailfish.img001 && fastboot reboot`.
 
-Sailfish boots, but for some reason on my machine when I do all this, I end up with the wrong droid-hal-img-boot rpm on device and so /lib/modules is not on device and very little works.
+Sailfish boots, takes a bit for first start perhaps.
 
 ## HADK guides used for this port:
 
