@@ -53,7 +53,7 @@ In the platformSDK, clone `git clone https://github.com/sharks-dev/droid-hal-img
 
 Run `rpm/dhd/build_packages.sh -b ./some/path/droid-hal-img/boot`, this gives you hybris-boot.img in that directory.
 
-Run `sudo mic create loop --arch=$PORT_ARCH --tokenmap=ARCH:$PORT_ARCH,RELEASE:$RELEASE,EXTRA_NAME:$EXTRA_NAME --record-pkgs=name,url --outdir=sfe-$DEVICE-$RELEASE$EXTRA_NAME --copy-kernel "$ANDROID_ROOT"/Jolla-@RELEASE@-$DEVICE-@ARCH@.ks`, this gives you sailfish.img001 and dtbo.img.
+Run `sudo mic create loop --arch=$PORT_ARCH --tokenmap=ARCH:$PORT_ARCH,RELEASE:$RELEASE,EXTRA_NAME:$EXTRA_NAME --record-pkgs=name,url --outdir=sfe-$DEVICE-$RELEASE$EXTRA_NAME --copy-kernel "$ANDROID_ROOT"/Jolla-@RELEASE@-$DEVICE-@ARCH@.ks`, this gives you sailfish.img001 and dtbo.img and a bunch of other crap in a *.zip file.
 
 Ensure you're running Lineage in slot a
 
