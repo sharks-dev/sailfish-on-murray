@@ -4,6 +4,10 @@ Using [sailfishIRC-localArchiver](https://github.com/starkDbl07/sailfishIRC-loca
 
 Hopefully I don't come off as too much of a whinger when you read it.
 
+---
+### 📅 2026-06-10
+
+(No logs, this was the date I began setting up the SDKs. I began seriously working in the HABUILD environment on 2026-06-14.)
 
 ---
 ### 📅 2026-06-22
@@ -768,7 +772,8 @@ Hopefully I don't come off as too much of a whinger when you read it.
 | 07:59:01 | &lt;rinigus&gt;: :) |
 | 07:59:54 | *&lt;sharks&gt;*: True, but nagara doesn't have an active SODP port running in parallel anymore! |
 | 08:00:12 | *&lt;sharks&gt;*: So it doesn't require the distinction |
-| 09:10:07 | *&lt;sharks&gt;*: @mal or @Keto can I pretty please with a cherry on top have a repo made for me? I would really love to get something done tonight as 2026-07-15T10:14:21  <mal> sharks: what is you obs username? |
+| 09:10:07 | *&lt;sharks&gt;*: @mal or @Keto can I pretty please with a cherry on top have a repo made for me? I would really love to get something done tonight as as I'll be away tomorrow |
+| 10:14:21 | <mark>&lt;mal&gt;</mark>: sharks: what is you obs username? |
 | 10:14:27 | *&lt;sharks&gt;*: sharks |
 | 10:18:19 | *&lt;sharks&gt;*: Thankyou mal!! |
 | 10:19:25 | <mark>&lt;mal&gt;</mark>: https://build.sailfishos.org/project/show/nemo:devel:hw:sony:murray and https://build.sailfishos.org/project/show/nemo:testing:hw:sony:murray |
