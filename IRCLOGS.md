@@ -1,6 +1,6 @@
 # irclogs
 
-Using [sailfishIRC-localArchiver](https://github.com/starkDbl07/sailfishIRC-localArchiver#) and some quick bash scripting, I've pulled all the relevant logs to this port from #sailfishos-porters and put them here for future reference. You can of course always [grep the archives yourself](https://piggz.co.uk/sailfishos-porters-archive/index.php), but this makes life easier if you're looking for the history of what I went through in getting this port to work.
+Using [sailfishIRC-localArchiver](https://github.com/starkDbl07/sailfishIRC-localArchiver#) and some quick bash scripting, I've pulled all the relevant logs to this port from #sailfishos-porters and put them here for future reference. You can of course always [grep the archives yourself](https://piggz.co.uk/sailfishos-porters-archive/index.php), but this makes life easier if you're looking for the history of what I went through in getting this port to work. It might be a handy reference if I ever run into any of the same issues again, or if someone else comes along wanting to port the X10V and doesn't want to make the same mistakes I did.
 
 Hopefully I don't come off as too much of a whinger when you read it.
 
