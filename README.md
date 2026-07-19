@@ -43,7 +43,7 @@ Don't forget to build pulseaudio-modules-droid version 14.2.106 (fixes audio in 
 
 For AIDL sensors, I think we need the latest 0.15.2 version of sensorfw (used to be the [jb61406 branch](https://piggz.co.uk/sailfishos-porters-archive/index.php?log=2026-04-10.txt#line571)). It doesn't get pulled in automatically at the time of writing so I ran `rpm/dhd/helpers/build_packages.sh --mw=https://github.com/sailfishos/sensorfw --spec=rpm/sensorfw-qt5-binder.spec`
 
-Thanks to @rinigus for [droid-bthelper](https://github.com/sailfishos-sony-nagara/droid-bthelper), which we need to enable bluetooth audio in calls. Include it with `rpm/dhd/helpers/build_packages.sh --mw=https://github.com/sharks-dev/droid-bthelper`
+Thanks to @rinigus for [droid-bthelper](https://github.com/sailfishos-sony-nagara/droid-bthelper), which we need to enable bluetooth audio in calls. Include it with `rpm/dhd/helpers/build_packages.sh --mw=https://github.com/sharks-dev/droid-bthelper`. Note it doesn't work yet, but one day when it does it will be beneficial to just be able to update the existing rpm.
 
 Ensure you're flashing to slot_a, as parse-android-dynparts seems incompatible with slot_b(?)
 
