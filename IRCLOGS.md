@@ -579,6 +579,27 @@ Hopefully I don't come off as too much of a whinger when you read it.
 | :--- | :--- |
 | 03:54:16 | *&lt;sharks&gt;*: Dang, is it the case that no audio during calls is not a trivial thing? I thought it was a relatively common issue but there doesn't seem to be a relatively common solution? |
 | 04:56:43 | *&lt;sharks&gt;*: Also @mister_magister did you solve the not being able to reject a call issue? I have noticed it is happening to me too |
+| 07:16:59 | *&lt;sharks&gt;*: From the logs on 2023-04-13 mal, k1gen and edp_17 were all having issues with audio in calls and they suspected because they all used hidl_compat. I am also using hidl-compat. Does anyone know if they ever got to the bottom of this problem? Does fp4 / motog7 / pixel4 still have no audio in calls? |
+| 07:27:14 | *&lt;sharks&gt;*: On 2023-07-25 it was mentioned that you need dummy-af if you have vendor.qti.*.am@ in binder-list, but I have both. Do I need audioflinger or something? |
+| 09:53:39 | *&lt;sharks_&gt;*: Do I need the jb2q audio even though I have Android 15? |
+| 11:51:07 | <mark>&lt;mal&gt;</mark>: no, you don't use jb2q, and you should have dummy-af |
+| 12:45:45 | &lt;T42&gt;: <Mister_Magister> yes i did solve it (re @SailfishFreenodeIRCBridgeBot: <sharks>Also @mister...) |
+| 12:46:02 | &lt;T42&gt;: <Mister_Magister> but unless you have motorola with similar vendor it mostlikely won't help you |
+| 12:52:50 | <mark>&lt;mal&gt;</mark>: sharks: call audio is usually just about getting the hidl_compat module to function properly |
+| 23:34:23 | *&lt;Sharks_&gt;*: Forgive me if I'm slack at replying, currently on morning tea break at work, but I can't see any apparent fault in `/system/bin/logcat -b all \| grep -iE "voice\|pcm\|voip\|incall\|start_voice\|s |
+| 23:34:23 | *&lt;Sharks_&gt;*: top_voice"` when making a call. Am I looking in the wrong spot? https://paste.opensuse.org/pastes/e9201fda5d52 |
+| 23:36:13 | <mark>&lt;mal&gt;</mark>: Sharks_: you are using sailfish 5.1? |
+| 23:36:43 | <mark>&lt;mal&gt;</mark>: which pulseaudio-modules-droid version do you have? and droid-config submodule revision? |
+| 23:40:29 | *&lt;Sharks_&gt;*: 5.1.0.10 at the minute, yes. I have 'pulseaudio-modules-droid-common-14.2.109-1.aarch64', 'pulseaudio-modules-droid-14.2.109-1.aarch64', 'pulseaudio-modules-droid-hidl-1.5.1-1.aarch64'. Droid-configs-device is @41cd1d9 |
+| 23:45:56 | <mark>&lt;mal&gt;</mark>: too new pulseaudio-modules-droid, you should build 14.2.106 (commit 65edd31f62f22e2eec1f765608ca9c6ae5c4af7b) |
+| 23:46:48 | <mark>&lt;mal&gt;</mark>: when building next image use 5.1.0.11, that is the latest 5.1 release |
+| 23:50:50 | *&lt;Sharks_&gt;*: thankyou mal, when I get home from work I will try that. Really appreciate it, I was quite lost trying to work out where I had gone wrong. |
+| 23:51:32 | <mark>&lt;mal&gt;</mark>: Sharks_: when building pulseaudio-modules-droid, either use "build_packages.sh -b hybris/mw/libhybris" or use build_packages -o --mw (that -o means offline mode i.e. it won't update to latest commit before building) |
+| 23:52:39 | <mark>&lt;mal&gt;</mark>: Sharks_: yes, it's a bit problematic when latest package versions won't work with latest public sailfish release, it happens sometimes |
+| 23:53:27 | *&lt;Sharks_&gt;*: Understood, I'll delete the rpms in droid-local-repo, clone the correct version and build the offline mode. I was also planning on upgrading to 5.1.0.11 once I had the bugs ironed out |
+| 23:54:12 | <mark>&lt;mal&gt;</mark>: I'll go offline now, it'a already 3 am here |
+| 23:55:24 | *&lt;Sharks_&gt;*: Goodness, I thought two nights ago it was bad that I was still debugging at 1:30AM |
+| 23:55:47 | *&lt;Sharks_&gt;*: Thanks again, I'll let you know how I get on this evening |
 
 ---
 ### 📅 2026-07-13
