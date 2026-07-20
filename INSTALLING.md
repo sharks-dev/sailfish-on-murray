@@ -1,7 +1,6 @@
 # Installing the *testing* image:
 
 *Note: these instructions may not be the most efficient way of getting the job done, but they worked for me. If someone wishes to revise them please let me know.*
-*Additionally, remember that my device is an XQ-CC72. In theory, these images should work identically on an XQ-CC54 (as the LineageOS images do), but until someone tries it I can't be sure.*
 
 First, flash stock firmware. I did this by plugging into [Xperia Flash Tool](https://opendevices.sony.net/aosp-on-xperia-open-devices/get-started/flash-tool), which shot me back to Android 12.
 
