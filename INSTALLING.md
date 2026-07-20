@@ -17,7 +17,7 @@ In order to install Lineage, we need to start with Android 14, so I downloaded v
 
 Once fully upgraded to the latest Android 14 from Sony, I headed to the [LineageOS downloads page](https://web.archive.org/web/20251123023550/https://download.lineageos.org/devices/pdx225/builds) (archived) to get the latest LineageOS 22.2 build for pdx225. You will need to download lineage-22.2-20251009-nightly-pdx225-signed.zip and the associated dtbo.img and vbmeta.img. The *.zip file is also mirrored at [lineage-archive.timschumi.net](https://lineage-archive.timschumi.net/build/35983).
 
-| Flashed to Sony Android 14 |
+| Booting to LineageOS Recovery for the first time |
 |---|
 |<img src="https://github.com/sharks-dev/sailfish-on-murray/blob/main/images/4_Lineage_Recovery.jpg?raw=true" width="40%" />|
 
