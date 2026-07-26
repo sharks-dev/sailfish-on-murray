@@ -47,7 +47,7 @@ Thanks to @rinigus for [droid-bthelper](https://github.com/sailfishos-sony-nagar
 
 Obviously ensure all the above is in your patterns, reference eg. [here](https://github.com/sharks-dev/droid-config-pdx225/blob/5195d76c7367472a0591950da54277e2fc68c9fc/patterns/patterns-sailfish-device-adaptation-xqcc72.inc#L30) and [here](https://github.com/sharks-dev/droid-config-pdx225/blob/5195d76c7367472a0591950da54277e2fc68c9fc/patterns/patterns-sailfish-device-adaptation-xqcc72.inc#L53)
 
-Ensure you're flashing to slot_a, as parse-android-dynparts seems incompatible with slot_b(?)
+Ensure you're flashing to slot_a, as parse-android-dynparts seems incompatible with slot_b(? [at least out of the box](https://irclogs.sailfishos.org/logs/%23sailfishos-porters/2026/%23sailfishos-porters.2026-07-20.log.html#t2026-07-20T16:27:47))
 
 Run `fastboot erase userdata && fastboot format:ext4 userdata` before flashing (to ensure userdata is not encrypted by Android. Note you cannot use the fastboot 34.0.5-debian for this, you must download the latest fastboot 37.0.0-14910828 at the time of writing).
 
