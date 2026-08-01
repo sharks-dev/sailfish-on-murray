@@ -37,6 +37,8 @@ On my machine (i7-6700, 32GB, Debian 13), from scratch, building SFOS 5.1.0.10, 
 
 [Apply patches](https://sailfishos.wiki/link/20#bkmrk-before-building-hybr) before doing anything! (How did I miss this??)
 
+Don't forget to [patch linkerconfig too](https://irclogs.sailfishos.org/logs/%23sailfishos-porters/2026/%23sailfishos-porters.2026-06-27.log.html#t2026-06-27T12:57:42)
+
 In the HABUILD_SDK after compiling `droidmedia` and `hybris-hal`, Don't forget to run `make audio.hidl_compat.default` (see manifest.xml for source).
 
 In the PlatformSDK, don't forget to build pulseaudio-modules-droid version 14.2.106 (fixes audio in calls & routing: https://irclogs.sailfishos.org/logs/%23sailfishos-porters/2026/%23sailfishos-porters.2026-07-12.log.html#t2026-07-12T23:45:56). I did this before building the rest of the standard middleware components. Remember to answer "n" when asked if you want to build `pulseaudio-modules-droid` as part of the standard `build-packages.sh --mw` script. This prevents your source tree being updated to the latest commit and ending up with version 14.2.109 or higher. 
