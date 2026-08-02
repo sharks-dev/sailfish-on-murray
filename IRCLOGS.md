@@ -1083,3 +1083,133 @@ Hopefully I don't come off as too much of a whinger when you read it.
 | 13:41:15 | *&lt;sharks&gt;*: Oh also - @Keto, may I please have store access? `ssu s` --> "Device model: Xperia 10 IV (xqcc72 / community)" |
 | 13:58:28 | &lt;Keto&gt;: sharks: done |
 | 14:00:05 | *&lt;sharks&gt;*: Thanks muchly, appears to work fine now :) |
+
+---
+### 📅 2026-07-20
+
+| Time | User & Message |
+| :--- | :--- |
+| 03:36:16 | *&lt;sharks_&gt;*: It was briefly mentioned a few weeks ago, but is there any way to handle parse-android-dynparts completely agnostic of which slot you're flashed onto? |
+| 03:36:19 | *&lt;sharks_&gt;*: https://irclogs.sailfishos.org/logs/%2523sailfishos-porters/2026/%2523sailfishos-porters.2026-06-29.log.html#t2026-06-29T11:02:32 |
+| 03:40:36 | *&lt;sharks_&gt;*: https://irclogs.sailfishos.org/logs/%23sailfishos-porters/2026/%23sailfishos-porters.2026-06-29.log.html#t2026-06-29T11:02:32 |
+| 03:41:07 | *&lt;sharks_&gt;*: Sorry, for some reason sailfish browser turns "%23" into "%2523" |
+| 07:26:46 | &lt;Mister_Magister&gt;: sailbot: it encodes %, %25 is % encoded |
+| 08:25:45 | &lt;Mister_Magister&gt;: sorry i meant sharks xd |
+| 08:26:01 | &lt;Mister_Magister&gt;: poor bot catching strays xd |
+| 09:38:06 | *&lt;sharks&gt;*: Lol, yeah no I know it's encoding % as %25 but it seems counter-intuitive given that the % is only there to encode # as %23 |
+| 09:38:54 | &lt;Mister_Magister&gt;: don't shoot the messenger :P |
+| 09:44:23 | *&lt;sharks&gt;*: I did not intend to! |
+| 16:27:47 | **&lt;elros34&gt;**: sharks: I didn't test but maybe it's enough to just change this line https://github.com/tchebb/parse-android-dynparts/blob/master/main.cpp#L22 to ReadMetadata(argv[1], 1); for 'b' slot |
+
+---
+### 📅 2026-07-21
+
+| Time | User & Message |
+| :--- | :--- |
+| 06:09:35 | *&lt;sharks_&gt;*: Hi all - I'd like to look into getting the other two cameras working on X10IV - is that a possibility? I note that wide angle doesn't work on Miami and I'm aware triple camera support is limited on X10III. Not sure what my chances are at this stage. |
+| 06:09:55 | *&lt;sharks_&gt;*: Is it worth looking into Camera2 yet or is that not on the cards yet? |
+| 06:48:25 | *&lt;sharks&gt;*: @elros34 re: parse-android-dynparts, that looks promising thanks, but it would mean you'd be stuck in slot b instead. I don't think there is a way to work in "whichever" slot it happens to have been flashed in |
+| 06:58:31 | **&lt;elros34&gt;**: That shouldn't be very hard. Add parsing for slot to dynparts (maybe there is even way to do this in program) and then in script check for active slot and pass it when running dynparts |
+| 07:02:14 | *&lt;sharks_&gt;*: Ah, good point. I hadn't thought of it like that. If I get enough free time I'll look into that idea, thanks! |
+
+---
+### 📅 2026-07-22
+
+| Time | User & Message |
+| :--- | :--- |
+| 00:37:41 | *&lt;sharks_&gt;*: Can I please get a sanity check on what's required to update an LVM image's kernel configs? Do I make the change to the defconfig, `breakfast $device`, `make hybris-hal`, build droid-hal-$device, upload droid-hal-$device-kernel to OBS, and re-trigger droid-hal-img-boot in OBS and make a new image with `mic`? |
+| 04:19:01 | **&lt;elros34&gt;**: probably but don't forget about modules: https://build.sailfishos.org/package/live_build_log/nemo:devel:hw:sony:murray/droid-hal-img-boot-sony-xqcc72/sailfish_latest_aarch64/aarch64. |
+| 12:57:31 | *&lt;sharks_&gt;*: Thanks @elros34, I was sucessful at recompiling the kernel, though I initially did not commit my changes so ended up with /lib/modules/5.4.300-xxxxx-dirty. It appears it's not enough to just `zypper ref && zypper dup` to update the kernel, either - not like Desktop linux. Still have to reflash the new `hybris-boot.img` to get the defconfig changes to take effect. |
+| 13:00:47 | *&lt;sharks_&gt;*: The next thing I would like to look into is getting the rest of the cameras working, though I don't know where to start debugging that. I have `/etc/dconf/db/vendor.d/jolla-camera-hw.txt` with the three backCameraLabels but nothing more. Both Advanced Camera and tho Jolla Camera apps cannot see more than the main lens and the selfie lens. |
+| 14:53:04 | **&lt;elros34&gt;**: @sharks_ it should be enough to just OTA upgrade packages but only you did all steps required for auto kernel flashing from hadk-faq |
+| 20:18:13 | *&lt;sharks_&gt;*: Thanks @elros34, I'll doube check, probably the problem is related to not commiting the changes and ending up with that dirty kernel version |
+| 22:51:33 | *&lt;sharks_&gt;*: Ah, I am missing `sparse/var/lib/flash-partition/` and `sparse/var/lib/platform-updates/`. If I add them perhaps I won't need to flash `hybris-boot.img` manually |
+| 22:53:12 | *&lt;sharks_&gt;*: Ah, and %define enable_kernel_update etc., okay no worries. I'll make those changes tonight. |
+
+---
+### 📅 2026-07-23
+
+| Time | User & Message |
+| :--- | :--- |
+| 11:18:49 | *&lt;sharks_&gt;*: Well, I got really close to updating the kernel. I'm held up in two spots. Hadk-faq calls for "CPUCHECK_STRING to match the Hardware field in /proc/cpuinfo", but my `/proc/cpuinfo` doesn't contain any such thing. And it also wants "Don't forget to make [flash-bootimg.sh] executable", but running chmod +x on the file in my sparse directory doesn't translate to the device. |
+| 11:22:00 | *&lt;sharks_&gt;*: contents of /proc/cpuinfo --> https://paste.opensuse.org/pastes/0041b5fbef9f |
+| 11:22:23 | *&lt;sharks_&gt;*: Any clue what I should try next? |
+| 11:42:06 | *&lt;sharks_&gt;*: Hmm, I sed CPUCHECK_STRING to the "CPU part" value of "0xd05", and now flash-bootimg.sh seems to work. |
+| 11:42:12 | *&lt;sharks_&gt;*: set* |
+| 11:42:58 | *&lt;sharks_&gt;*: I don't know if that's recommended but unless someone has a better idea I might roll with that |
+| 13:14:25 | <mark>&lt;mal&gt;</mark>: the paths the flash-partition script checks for CPUCHECK_STRING are /proc/cpuinfo and /sys/firmware/devicetree/base/model so you probably need to check what the latter has |
+| 13:54:18 | *&lt;sharks_&gt;*: Thanks mal, `$ cat /sys/firmware/d |
+| 13:54:18 | *&lt;sharks_&gt;*: evicetree/base/model` --> |
+| 13:54:18 | *&lt;sharks_&gt;*: "Sony Mobile Communications. PDX225(BLAIR v4)" |
+| 13:54:43 | *&lt;sharks_&gt;*: Seems a much better value |
+| 13:55:08 | *&lt;sharks_&gt;*: And the executable issue was just me forgetting how to type |
+| 13:55:52 | *&lt;sharks_&gt;*: So I'll fix CPUCHECK_STRING and should be sweet, thanks again |
+| 15:39:42 | &lt;nightishaman&gt;: @b100dian unfortunately waydroid fails with waydroid-preinit: Failed to remount cgroup: Invalid argument |
+| 15:47:15 | &lt;Mister_Magister&gt;: nightishaman: looks like you lack some cgroups? |
+| 16:22:30 | &lt;nightishaman&gt;: @Mister_Magister It's on the nagara build rinigus and Vlad produced |
+| 16:22:35 | &lt;nightishaman&gt;: mine cant do waydroid yet |
+| 21:07:52 | *&lt;sharks_&gt;*: yeah I'm trying to sort waydroid out as well. I can't find the "waydroidplatform" service, and I'm not sure but it seems wrong to me that my puddlejumpers are in /dev/binderfs/*puddlejumper rather than /dev/*puddlejumper |
+| 21:09:13 | &lt;Mister_Magister&gt;: where did the name puddlejumper come from, i mean i do know but i wonder if its the same thing in this context |
+| 21:13:21 | <mark>&lt;mal&gt;</mark>: from stargate |
+| 21:13:45 | &lt;Mister_Magister_&gt;: mal: i know but like, i thought if author also pulled it from stargate |
+| 21:14:01 | &lt;Mister_Magister_&gt;: mal: but since name originates from sfos then you must be right then? |
+| 21:15:44 | &lt;Mister_Magister&gt;: mal: who thought of that name? xd |
+| 21:15:54 | <mark>&lt;mal&gt;</mark>: probably frajo |
+| 21:16:09 | &lt;Mister_Magister&gt;: First time I've heard that name |
+| 21:16:10 | <mark>&lt;mal&gt;</mark>: was krnlyng on irc |
+| 21:16:17 | &lt;Mister_Magister&gt;: ohhh |
+| 21:16:21 | &lt;Mister_Magister&gt;: cool beans |
+| 21:16:40 | &lt;Mister_Magister&gt;: must've liked stargate atlantis (based) |
+| 21:16:45 | <mark>&lt;mal&gt;</mark>: yep |
+| 22:02:43 | &lt;abranson&gt;: krnlyng = colonel young |
+| 22:04:57 | &lt;NotKit&gt;: huh, I always thought it had to do something with "kernel" |
+| 22:05:54 | &lt;Mister_Magister&gt;: yeah abranson thats news to me too |
+
+---
+### 📅 2026-07-24
+
+| Time | User & Message |
+| :--- | :--- |
+| 04:13:10 | *&lt;sharks_&gt;*: hangon, have I been wasting my time for three days? Is Waydroid currently impossible on Android bases >= 14? |
+| 04:32:47 | *&lt;sharks_&gt;*: Hmmm perhaps not, github.com/WayDroid-ATV/waydroid-builds has versions of Waydroid for A14, A15 and A16. The image that `waydroid-init` installed on my phone was Android 13 though, so perhaps I need to manually load an A15 image from here somehow |
+| 04:38:14 | *&lt;sharks_&gt;*: oh drat they're x86_64 not aarch64 |
+| 04:39:13 | *&lt;sharks_&gt;*: okay so I have to build them myself, but then it could work? Maybe I should do more research before I try |
+| 09:43:11 | *&lt;sharks_&gt;*: Okay, maybe waydroid is beyond my skill level. Forgive me if this is a taboo topic, but am I likely to have challenges with AAS as well for the same reason (ie. LOS22 base)? |
+| 10:03:24 | &lt;adampigg&gt;: you cant usually install AAS, unless you also have an official device with access to the repos |
+| 10:06:53 | *&lt;sharks_&gt;*: @adampigg I understand that. We're talking about an X10IV here so it is an "official device", just not running the "official port". |
+| 10:07:43 | &lt;adampigg&gt;: well, if your account has access to the repos, it may be possible to get running |
+| 10:07:51 | *&lt;sharks_&gt;*: Anyway, I don't plan on using AAS personally unless it one day is allowed for community ports. I'm just curious as to whether it would even support a LOS22 base |
+| 10:08:29 | *&lt;sharks_&gt;*: @adampigg What do you mean my account? I do not need the official port running on the device to access the repos? |
+| 10:09:22 | &lt;adampigg&gt;: not the official port, but your jolla account may need to be added to access the offical repos |
+| 10:10:42 | *&lt;sharks_&gt;*: I was signed into the official port for 18 months with this Jolla account, and had AAS installed. |
+| 10:11:30 | &lt;adampigg&gt;: yeah, so i think you need the credentials in ssu, with the correct domain set to access the closed repo |
+| 10:11:42 | &lt;adampigg&gt;: im no expert on this though |
+| 10:12:52 | *&lt;sharks_&gt;*: I thought it was dependent on the "Device model" value from `ssu s` as well. |
+| 10:22:18 | &lt;abranson&gt;: it would be interesting to know if AAS can run on your port or not ;) |
+| 10:23:44 | &lt;adampigg&gt;: sharks: its been done using just the repos, and a cbeta account, on an unoffical device |
+| 10:31:50 | *&lt;sharks_&gt;*: Hmm, I don't know what I'm doing so it seems like the easiest option would be to reinstall the official port. I can't be bothered doing that :P |
+| 10:32:05 | *&lt;sharks_&gt;*: Instead I'll focus on some other things I might have half a chance with, like fingerprint and bluetooth calling |
+| 10:41:33 | &lt;abranson&gt;: if you've added all of the required kernel configs then it probably would work. what's the kernel version on that? |
+| 10:53:52 | *&lt;sharks_&gt;*: I've got kernel 5.4.300 |
+| 10:56:11 | *&lt;sharks_&gt;*: Is there a list of the required configs somewhere? I presume it's more than what's in mer-kernel-check |
+| 11:14:21 | &lt;adampigg&gt;: if you get it installed, there is a tool in the install to check configs (re @SailfishFreenodeIRCBridgeBot: <sharks_>Is there a ...) |
+| 11:15:12 | *&lt;sharks_&gt;*: Alright, thanks piggz. If I work out how to obtain it, I'll investigate. |
+| 11:15:48 | *&lt;sharks_&gt;*: I did intend to save a copy before wiping the official port but it seems I forgot or else misplaced them. |
+| 11:29:56 | *&lt;sharks_&gt;*: Who is the leading authority on `fake_crypt` for `sailfish-fpd-community`? I am failing to compile it due to some missing files. `$ /system/bin/lshal \| grep -i "keymaster"` on device returns both "android.hardware.keymaster@4.0::IKeymasterDevice/default" and "android.hardware.keymaster@4.1::IKeymasterDevice/default" so I am sure I need it. Output of `make fake_crypt` --> https://paste.opensuse.org/pastes/6fd973074a1d |
+| 11:34:20 | *&lt;sharks_&gt;*: Is this another Android 15 problem? |
+| 12:27:08 | *&lt;sharks_&gt;*: Does Nagara not have keymaster? They're using droid-biometry-fp instead. I've just tried that but when it tries to go to FPSTATE_ENROLLING I'm shot back to void FPDCommunity::slot_failed(const QString&) "SYS_UNKNOWN" |
+| 16:36:29 | **&lt;elros34&gt;**: PR for keymaster 4.1 in fake_crypt repo doesn't help? |
+
+---
+### 📅 2026-07-25
+
+| Time | User & Message |
+| :--- | :--- |
+| 00:00:16 | *&lt;sharks_&gt;*: @elros34 what PR? There are no open or closed PRs in github.com/sailfishos-open/sailfish-fpd-community regarding keymaster 4.1? |
+| 00:05:09 | *&lt;sharks_&gt;*: Ah, it's in erfanoabdi/fake_crypt, gotcha |
+| 00:05:37 | *&lt;sharks_&gt;*: That was a noob mistake, my bad. Thanks |
+| 00:12:36 | *&lt;sharks_&gt;*: Nope, that's not done it. I've got a different error at least --> https://paste.opensuse.org/pastes/2c9b17b10022 |
+| 00:30:40 | *&lt;sharks_&gt;*: Okay, got it to compile with some small tweaks --> https://github.com/sharks-dev/fake_crypt |
+| 00:47:11 | *&lt;sharks_&gt;*: Do I have to rebuild sailfish-fpd-community with a different spec file to tell it to look for fake_crypt rather than droid-biometry? |
+| 01:20:59 | *&lt;sharks_&gt;*: Oh hangon, I think it needs both. My bad |
+| 02:05:24 | *&lt;sharks_&gt;*: Well I've got sailfish-fpd-community, sailfish-fpd-community-test, droid-fake-crypt and droid-biometry-fp, but still when attempting to test the fingerprint we see FPSTATE_IDLE and then Failed Error: SYS_UNKNOWN |
