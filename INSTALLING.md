@@ -4,13 +4,13 @@
 
 *Note: If you are following along to these instructions but installing to a Zambezi (Xperia 10 V) device, refer to the [Zambezi INSTALLING.md](https://github.com/sharks-dev/sailfish-on-zambezi/blob/main/INSTALLING.md) for the appropriate values <mark>highlighted in yellow</mark> below.*
 
-First, flash stock firmware. I did this by plugging into [Xperia Flash Tool](https://opendevices.sony.net/aosp-on-xperia-open-devices/get-started/flash-tool), which shot me back to Android 12.
+I do not know that this step is strictly necessary, but to be safe I first flashed stock firmware. I did this by plugging into [Xperia Flash Tool](https://opendevices.sony.net/aosp-on-xperia-open-devices/get-started/flash-tool) (also known as EMMA), which shot me back to Android 12.
 
 Reflashing stock | Flashed to Sony Android 12
 --- | ---
 ![Reflashing stock OS](https://github.com/sharks-dev/sailfish-on-murray/blob/main/images/1_reflashing_stock.jpg?raw=true) | ![Flashed to Sony A12](https://github.com/sharks-dev/sailfish-on-murray/blob/main/images/2_stock_A12.jpg?raw=true)
 
-In order to install Lineage, we need to start with Android 14, so I downloaded version <mark>65.2.A.2.270</mark> with [XperiaFirm](https://xperifirmtool.com/), and flashed that with NewFlasher [Github](https://github.com/munjeni/newflasher)/[XDA Forums](https://xdaforums.com/t/tool-newflasher-xperia-command-line-flasher.3619426/).
+In order to install Lineage, we need to start with Android 14, so I downloaded version <mark>65.2.A.2.270</mark> with [XperiaFirm](https://xperifirmtool.com/), and flashed that with NewFlasher [Github](https://github.com/munjeni/newflasher)/[XDA Forums](https://xdaforums.com/t/tool-newflasher-xperia-command-line-flasher.3619426/). I have been informed that you could alternatively use [Emma](https://github.com/Sony-Emma-Flasher) and then painfully OTA upgrade a number of times until you reach Android 14.
 
 | Flashed to Sony Android 14 |
 |---|
