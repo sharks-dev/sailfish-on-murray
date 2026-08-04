@@ -10,7 +10,7 @@ Reflashing stock | Flashed to Sony Android 12
 --- | ---
 ![Reflashing stock OS](https://github.com/sharks-dev/sailfish-on-murray/blob/main/images/1_reflashing_stock.jpg?raw=true) | ![Flashed to Sony A12](https://github.com/sharks-dev/sailfish-on-murray/blob/main/images/2_stock_A12.jpg?raw=true)
 
-In order to install Lineage, we need to start with Android 14, so I downloaded version <mark>65.2.A.2.270</mark> with [XperiaFirm](https://xperifirmtool.com/), and flashed that with NewFlasher [Github](https://github.com/munjeni/newflasher)/[XDA Forums](https://xdaforums.com/t/tool-newflasher-xperia-command-line-flasher.3619426/). I have been informed that you could alternatively use [Emma](https://github.com/Sony-Emma-Flasher) and then painfully OTA upgrade a number of times until you reach Android 14.
+In order to install Lineage, we need to start with Android 14, so I downloaded version <mark>65.2.A.2.270</mark> with [XperiaFirm](https://xperifirmtool.com/), and flashed that with NewFlasher [Github](https://github.com/munjeni/newflasher)/[XDA Forums](https://xdaforums.com/t/tool-newflasher-xperia-command-line-flasher.3619426/). I have been informed that you could alternatively use [Emma](https://opendevices.sony.net/aosp-on-xperia-open-devices/get-started/flash-tool), relock the bootloader, and then painfully OTA upgrade a number of times until you reach Android 14.
 
 | Flashed to Sony Android 14 |
 |---|
