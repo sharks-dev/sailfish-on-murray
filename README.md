@@ -1,5 +1,5 @@
 # sailfish-on-murray
-LineageOS 22.2 based SailfishOS for Sony Xperia 10 IV
+## LineageOS 22.2 based SailfishOS for Sony Xperia 10 IV, a [Verdandi**team**](https://verdanditeam.com/device/murray) port.
 
 
 ## Refer to:
@@ -51,6 +51,8 @@ On my machine (i7-6700, 32GB, Debian 13), from scratch, building SFOS 5.1.0.10, 
 [Apply patches](https://sailfishos.wiki/link/20#bkmrk-before-building-hybr) before doing anything! (How did I miss this??)
 
 Don't forget to [patch linkerconfig too](https://irclogs.sailfishos.org/logs/%23sailfishos-porters/2026/%23sailfishos-porters.2026-06-27.log.html#t2026-06-27T12:57:42)
+
+Don't forget to [fix Camera1](https://gist.github.com/sharks-dev/b7f941b1b3184d40428ddc4dc5518133) - Thanks Mister_Magister
 
 In the HABUILD_SDK after compiling `droidmedia` and `hybris-hal`, Don't forget to run `make audio.hidl_compat.default` (see manifest.xml for source).
 
